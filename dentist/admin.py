@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.contrib import admin
 from .models import Mendimi,Contact,Rezervo,Pricing
 # Register your models here.

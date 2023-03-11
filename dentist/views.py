@@ -1,11 +1,12 @@
-
+from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Contact,Rezervo
+from .forms import ContactForm,Rezervo
 from dentist.models import Mendimi
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from dentist.models import Mendimi,Galeria,Veneers,Invisalign,Ortodonci,Zbardhimi,Pricing
+from dentist.models import Mendimi,Galeria,Veneers,Invisalign,Ortodonci,Zbardhimi,Pricing,Contact
 # Create your views here.
 def home(request):
     u=User.objects.all()
@@ -59,18 +60,18 @@ def pricing(request):
     return render(request,'price.html',data)
 def contact(request):
     if request.method=="POST":
-        form=Contact(request.POST)
+        form=ContactForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('home')
-    return render(request,'contact.html',{'form':Contact})
+            messages.success(request,'Mesazhi juaj u dergua me sukses!Do ju kontaktojme se shpejti!')
+    return render(request,'contact.html',{'form':ContactForm,})
 
 def rezervo(request):
     if request.method=="POST":
        form=Rezervo(request.POST)
        if form.is_valid():
            form.save()
-       return redirect('home')
+       messages.success(request, 'Rezervimi juaj u dergua me sukses!Do ju kontaktojme se shpejti!')
     return render(request,'rezervo.html',{'form':Rezervo})
 
 def signup(request):

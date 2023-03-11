@@ -175,6 +175,11 @@ button[type=submit] {
       {{ form.as_p }}
       <button type="submit">Send</button>
   </form>
+    {% for message in messages %}
+        <p>{{ message }}</p>
+
+    {% endfor %}
+
 </div>
 
 

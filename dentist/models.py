@@ -40,7 +40,9 @@ class Zbardhimi(models.Model):
 class Contact(models.Model):
     name=models.CharField(max_length=255)
     lastname=models.CharField(max_length=255)
-    subject=models.TextField()
+    email=models.EmailField(blank=True)
+    subject=models.CharField(max_length=255)
+    content=models.TextField(blank=True)
     def __str__(self):
         return self.name
 

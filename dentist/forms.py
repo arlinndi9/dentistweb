@@ -1,7 +1,7 @@
 from django import forms
 from dentist.models import Contact,Rezervo,Pricing
 
-class Contact(forms.ModelForm):
+class ContactForm(forms.ModelForm):
     class Meta:
         model=Contact
         fields="__all__"
